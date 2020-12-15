@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2020/12 | ceal.dev</title>
+  <title>svelte-kit | ceal.dev</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -38,69 +38,87 @@
 </header>
 
     <div id="content">
-      
-  <section class="archives-wrap" style="margin-bottom: 0.5em;">
-    <input class="hidden-input" type="checkbox" onClick="tgl(this)" id="toggle-all">
-    <label class="month" for="toggle-all">Toggle all</label>
-  </section>
-  
-  
-  
+      <article id="post-svelte-kit" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
     
-    
-    
-      
-      
-      
-      <section class="archives-wrap">
-        <input class="hidden-input" type="checkbox" name="expand" id="expand1">
-        <label class="month" for="expand1">December 2020</label>
-        <div class="archives hidden">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <time class="archive-article-date" datetime="2020-12-14T18:14:37.000Z" itemprop="datePublished">14</time>
-
-      
+      <header class="article-header">
+        
   
-    <h2 class="archive-article-title" itemprop="name">
-      <a href="/2020/12/14/svelte-kit/">svelte-kit</a>
-      
+    <h2 class="article-title" itemprop="headline name">
+      svelte-kit
     </h2>
   
 
 
-    </header>
+        <div class="article-meta">
+          <time class="article-date" datetime="2020-12-14T18:14:37.000Z" itemprop="datePublished">December 14, 2020, 1:14 PM</time>
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="Getting-Started-With-Svelte-Kit-Session-Auth"><a href="#Getting-Started-With-Svelte-Kit-Session-Auth" class="headerlink" title="Getting Started With Svelte-Kit Session Auth"></a>Getting Started With Svelte-Kit Session Auth</h1><h2 id="Creating-our-new-project"><a href="#Creating-our-new-project" class="headerlink" title="Creating our new project"></a>Creating our new project</h2><p><code>npm init svelte@next hello-world</code></p>
+<img src="/2020/12/14/svelte-kit/init.png" class="code-image" title="Init">
+
+<p>Go ahead and type <code>Y</code>!</p>
+<p>Now we have a new directory that looks like the following:</p>
+<img src="/2020/12/14/svelte-kit/dir.png" class="" title="Dir">
+
+<p>For now lets create a simple file based “database” to store our session:</p>
+<p><code>touch sessions.json</code></p>
+<div class="code-class">
+  <button class="code-toggle">Raw</button>
+  <img src="/2020/12/14/svelte-kit/session_json.png" class="" title="Session">
+  <p class="code-snippet">Some code here</p>
+</div>
+
+<p>Now we want to create another <code>special</code> directory for Svelte-kit, the <code>src/setup</code> directory.</p>
+<p>Inside that directory we will have the following two files:</p>
+<p><code>index.js</code></p>
+<div class="code-class">
+  <button class="code-toggle">Raw</button>
+  <img src="/2020/12/14/svelte-kit/index_js.png" class="" title="index.js">
+  <p class="code-snippet">Some code here</p>
+</div>
+
+<p><code>db.js</code></p>
+<div class="code-class">
+  <button class="code-toggle">Raw</button>
+  <img src="/2020/12/14/svelte-kit/db_js.png" class="" title="db.js">
+  <p class="code-snippet">Some code here</p>
+</div>
+
+<p>The <code>setup/index.js</code> file runs for each new request made to the web application. Meaning that so long as we have the cookie with the key value <code>123</code> we will be able to authenticate our user. This means we have persistent state!</p>
+
+      
+    </div>
+    
+    
+    
   </div>
 </article>
 
   
-    
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <time class="archive-article-date" datetime="2020-12-12T18:15:44.000Z" itemprop="datePublished">12</time>
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2020/12/12/rt-finance-tracker/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          rt-finance-tracker
+        
+      </div>
+    </a>
+  
+</nav>
 
-      
-  
-    <h2 class="archive-article-title" itemprop="name">
-      <a href="/2020/12/12/rt-finance-tracker/">rt-finance-tracker</a>
-      
-    </h2>
-  
 
-
-    </header>
-  </div>
-</article>
-
-  
-  
-    </div></section>
-  
 
 
 
@@ -109,10 +127,6 @@
   </div>
   
 
-
-<script type="text/javascript">
-let tgl=(s)=>{x=document.getElementsByName("expand");for(let i=0;i<x.length;i++)x[i].checked=s.checked;}
-</script>
 
 
 <script type="text/javascript">
