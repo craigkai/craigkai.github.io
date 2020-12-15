@@ -60,19 +60,21 @@
     <div class="article-entry" itemprop="articleBody">
       
       
-        <h1 id="Getting-Started-With-Svelte-Kit-Session-Auth"><a href="#Getting-Started-With-Svelte-Kit-Session-Auth" class="headerlink" title="Getting Started With Svelte-Kit Session Auth"></a>Getting Started With Svelte-Kit Session Auth</h1><h2 id="Creating-our-new-project"><a href="#Creating-our-new-project" class="headerlink" title="Creating our new project"></a>Creating our new project</h2><p><code>npm init svelte@next hello-world</code></p>
+        <h1 id="Getting-Started-With-Svelte-Kit-Session-Auth"><a href="#Getting-Started-With-Svelte-Kit-Session-Auth" class="headerlink" title="Getting Started With Svelte-Kit Session Auth"></a>Getting Started With Svelte-Kit Session Auth</h1><p>At the time of writing this Svelte-kit is still experimental but we were still able to get some<br>basic session auth setup by doing the following.</p>
+<h2 id="Creating-our-new-project"><a href="#Creating-our-new-project" class="headerlink" title="Creating our new project"></a>Creating our new project</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init svelte@next hello-world</span><br></pre></td></tr></table></figure>
+
 <img src="/2020/12/14/svelte-kit/init.png" class="code-image" title="Init">
 
 <p>Go ahead and type <code>Y</code>!</p>
 <p>Now we have a new directory that looks like the following:</p>
 <img src="/2020/12/14/svelte-kit/dir.png" class="" title="Dir">
 
-<p>For now lets create a simple file based “database” to store our session:</p>
+<p>For now lets create a simple file based “database” to store our sessions:</p>
 <p><code>touch sessions.json</code></p>
 <div class="code-class">
   <button class="code-toggle">Raw</button>
   <img src="/2020/12/14/svelte-kit/session_json.png" class="" title="Session">
-  <p class="code-snippet">Some code here</p>
+  <p class="code-snippet"></p>
 </div>
 
 <p>Now we want to create another <code>special</code> directory for Svelte-kit, the <code>src/setup</code> directory.</p>
@@ -81,17 +83,23 @@
 <div class="code-class">
   <button class="code-toggle">Raw</button>
   <img src="/2020/12/14/svelte-kit/index_js.png" class="" title="index.js">
-  <p class="code-snippet">Some code here</p>
+  <p class="code-snippet"></p>
 </div>
 
 <p><code>db.js</code></p>
 <div class="code-class">
   <button class="code-toggle">Raw</button>
   <img src="/2020/12/14/svelte-kit/db_js.png" class="" title="db.js">
-  <p class="code-snippet">Some code here</p>
+  <p class="code-snippet"></p>
 </div>
 
-<p>The <code>setup/index.js</code> file runs for each new request made to the web application. Meaning that so long as we have the cookie with the key value <code>123</code> we will be able to authenticate our user. This means we have persistent state!</p>
+<p>The <code>setup/index.js</code> file runs for each new request made to the web application.<br>Meaning that so long as we have the cookie with the key value <code>my_web_app-123</code> we will be able<br>to authenticate our user without them needing to sign in again.</p>
+<p>To add the cookie to the users browser we can use the <code>Set-cookie</code> header when returning<br>the login request:</p>
+<div class="code-class">
+  <button class="code-toggle">Raw</button>
+  <img src="/2020/12/14/svelte-kit/header.png" class="" title="header">
+  <p class="code-snippet"></p>
+</div>
 
       
     </div>
@@ -139,8 +147,8 @@
     let image     = container.getElementsByTagName( 'img' )[0];
 
     if ( snippet.style.display == 'block' ) {
-      snippet.style.display = 'none';
-      image.style.display   = 'block';
+      snippet.style.display     = 'none';
+      image.style.display       = 'block';
     }
     else {
       let code     = /(.*)\.png/.exec( image.src )[1];
@@ -162,6 +170,9 @@
 
   for (var i = 0; i < elements.length; i++) {
     elements[i].addEventListener('click', myFunction, false);
+
+    let container = elements[i].parentNode;
+    let image     = container.getElementsByTagName( 'img' )[0];
   }
 </script>
 

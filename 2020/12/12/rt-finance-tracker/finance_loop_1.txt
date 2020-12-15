@@ -1,0 +1,21 @@
+my $members = $finance_group->UserMembersObj( Recursively => 0 );
+while ( my $member = $members->Next ) {
+    unless ( $member->FirstCustomFieldValue( 'Plaid access token' ) ) {
+        RT->Logger->error( $member->EmailAddress." does not have a Plaid access token, skipping" );
+        next;
+    }
+    my $payload = {
+        client_id     => '5e44bebd47679a00121308c8',
+        secret        => 'f48f714bedf9c49bba20efffdcd76c',
+        access_token  => $member->FirstCustomFieldValue( 'Plaid access token' ),
+        start_date    => $start_date,
+        end_date      => $end_date,
+    };
+    my $encoded_data = encode_utf8(encode_json($payload));
+    my $request = POST 'https://development.plaid.com/transactions/get', 'Content-Type' => 'application/json', Content => $encoded_data;
+    my $response = $ua->request( $request );
+
+    my $res = from_json($response->decoded_content);
+    if ( $res->{error_code} ) {
+      RT->Logger->error( $res->{error_message} );
+    }
