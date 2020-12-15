@@ -1,0 +1,8 @@
+my %finance_fields = (
+   'Amount Due'     => 'amount',
+   'Paid on'        => 'date',
+   'Category'       => 'category',
+   'Transaction ID' => 'transaction_id',
+   'Vendor'         => 'name',
+   'Location'       => 'location'
+);

@@ -1,0 +1,3 @@
+headers = {
+  'Set-Cookie' : "my_web_app-123="+res.username+"; Path=/; SameSite=Strict; Expires='';"
+};

@@ -1,6 +1,6 @@
 {
   "sessions" : {
-    "123" : {
+    "my_web_app-123" : {
       "Username" : "Craig"
     }
   }

@@ -1,0 +1,6 @@
+my $finance_group = RT::Group->new( RT->SystemUser );
+my ($ret, $msg) = $finance_group->LoadUserDefinedGroup( "Finance" );
+unless ( $ret ) {
+  RT->Logger->error( "Could not load Finance group: $msg" );
+  return;
+}

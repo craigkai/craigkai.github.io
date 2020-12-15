@@ -1,0 +1,49 @@
+my @transactions = $res->{'transactions'} ? @{$res->{'transactions'}} : ();
+
+    foreach my $transaction ( @transactions ) {
+        if ( $transaction->{'pending'} eq 'true' ) {
+            RT->Logger->debug( "Skipping $transaction->{transaction_id} as it is pending" );
+            next;
+        }
+        my $tickets = RT::Tickets->new( RT->SystemUser );
+        $tickets->FromSQL( "Queue = 'Finance' AND
+            'CF.{Transaction ID}' = '$transaction->{transaction_id}'"
+        );
+
+        if ( $tickets->Count ) {
+            RT->Logger->error( "Found duplicate transaction: $transaction->{transaction_id}, skipping sync." );
+            next;
+        }
+        else {
+            my $ticket = RT::Ticket->new( RT->SystemUser );
+            RT->Logger->debug( "Creating new ticket for tranaction: $transaction->{transaction_id}" );
+
+            my ($ret, $msg) = $ticket->Create(
+                Queue     => 'Finance',
+                Subject   => "$transaction->{name} charged ".$transaction->{amount}*-1,
+                Owner     => $member->PrincipalId,
+            );
+            if ( $ret ) {
+                ($ret, $msg) = $ticket->Load( $ret );
+                RT->Logger->error( "Could not load new ticket: $msg" ) unless $ret;
+
+                ($ret, $msg) = $ticket->SetStatus('paid');
+                RT->Logger->error( "Could not set status to paid: $msg" ) unless $ret;
+
+                foreach my $custom_field ( keys %finance_fields ) {
+                    if ( $custom_field eq 'Amount Due' ) {
+                        ($ret, $msg) = $ticket->AddCustomFieldValue( Field => 'Amount due', Value => "\$".$transaction->{'amount'}*-1 );
+                        RT->Logger->error( "Could not set amount due: $msg" ) unless $ret;
+                    }
+                    else {
+                        my @content = ref $transaction->{$finance_fields{$custom_field}} eq 'ARRAY' ? @{$transaction->{$finance_fields{$custom_field}}} : ($transaction->{$finance_fields{$custom_field}});
+                        foreach my $content ( @content ) {
+                            ($ret, $msg) = $ticket->AddCustomFieldValue( Field => $custom_field, Value => $content );
+                            RT->Logger->error( "Could not set custom field $custom_field: $msg" ) unless $ret;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
