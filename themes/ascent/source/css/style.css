@@ -428,3 +428,16 @@ td, th, table caption, table td, table th {
   float: right;
   padding: 0.5em;
 }
+
+.code-class {
+
+}
+
+.code-image {
+  
+}
+
+.code-snippet {
+  display: none;
+}
+

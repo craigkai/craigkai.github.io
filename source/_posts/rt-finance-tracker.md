@@ -1,3 +1,8 @@
+---
+title: rt-finance-tracker
+date: 2020-12-12 13:15:44
+tags:
+---
 # Using RT To Track My Finances
 
 I use RT to automatically track my finances, by using the free Plaid API I am able to pull in transactions from my bank account automatically and create tickets in RT.

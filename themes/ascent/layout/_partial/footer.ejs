@@ -8,6 +8,42 @@ let tgl=(s)=>{x=document.getElementsByName("expand");for(let i=0;i<x.length;i++)
 </script>
 <% } %>
 
+<script type="text/javascript">
+  var elements = document.getElementsByClassName( "code-toggle" );
+
+  function myFunction( e ) {
+    let src       = this.src;
+    let container = e.target.parentNode;
+    let snippet   = container.getElementsByTagName( 'p' )[0];
+    let image     = container.getElementsByTagName( 'img' )[0];
+
+    if ( snippet.style.display == 'block' ) {
+      snippet.style.display = 'none';
+      image.style.display   = 'block';
+    }
+    else {
+      let code     = /(.*)\.png/.exec( image.src )[1];
+      const newDiv = document.createElement( 'div' );
+
+      let xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function() { 
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ) {
+          snippet.innerHTML     = '<td class="code"><pre><span class="line">'+xmlHttp.responseText+'</span><br></pre></td>';
+          snippet.style.display = 'block';
+
+          image.style.display   = 'none';
+        }
+      }
+      xmlHttp.open("GET", code+'.txt', true);
+      xmlHttp.send( null );
+    }
+  }
+
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', myFunction, false);
+  }
+</script>
+
 <% if (theme.settings){ %>
 <div id="settings-container">
   <div id="dark-mode">dark</div>
