@@ -1,0 +1,42 @@
+async subscribeToChanges(
+    self: Matches | Brackets,
+    callback: (
+        self: Matches | Brackets,
+        payload: RealtimePostgresChangesPayload<{
+            [key: string]: any;
+        }>
+    ) => object,
+    table: string,
+    filter?: string
+): Promise<RealtimeChannel> {
+    const channelName = `${self.constructor.name}-${uuidv4()}`;
+
+    console.debug(
+        'Subscribing to changes for table ' +
+            table +
+            ' with filter ' +
+            filter +
+            ' constructor ' +
+            self.constructor.name +
+            ' channel ' +
+            channelName
+    );
+
+    return this.supabaseClient
+        .channel(channelName)
+        .on(
+            'postgres_changes',
+            { event: '*', schema: 'public', table: table, filter: filter },
+            (
+                payload: RealtimePostgresChangesPayload<{
+                    [key: string]: any;
+                }>
+            ) => {
+                callback(self, payload);
+            }
+        )
+        .subscribe((status) => {
+            self.subscriptionStatus = status;
+            console.debug('Realtime status', status);
+        });
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ceal.dev</title>
+  <title>volleyhub | ceal.dev</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -38,17 +38,14 @@
 </header>
 
     <div id="content">
-      
-  
-    <article id="post-volleyhub" class="article article-type-post" itemprop="blogPost" itemscope>
+      <article id="post-volleyhub" class="article article-type-post" itemprop="blogPost" itemscope>
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h2 class="article-title" itemprop="name">
-      <a href="/2024/08/13/volleyhub/">volleyhub</a>
-      
+    <h2 class="article-title" itemprop="headline name">
+      volleyhub
     </h2>
   
 
@@ -122,154 +119,37 @@
     </div>
     
     
-    
-  </div>
-</article>
-
-
-
-  
-    <article id="post-svelte-kit" class="article article-type-post" itemprop="blogPost" itemscope>
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 class="article-title" itemprop="name">
-      <a href="/2020/12/14/svelte-kit/">svelte-kit</a>
-      
-    </h2>
-  
-
-
-        <div class="article-meta">
-          <time class="article-date" datetime="2020-12-14T18:14:37.000Z" itemprop="datePublished">December 14, 2020, 6:14 PM</time>
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+    <div class="article-category">
       
       
-        <h1 id="Getting-Started-With-Svelte-Kit-Session-Auth"><a href="#Getting-Started-With-Svelte-Kit-Session-Auth" class="headerlink" title="Getting Started With Svelte-Kit Session Auth"></a>Getting Started With Svelte-Kit Session Auth</h1><p>At the time of writing this Svelte-kit is still experimental but we were still able to get some<br>basic session auth setup by doing the following.</p>
-<h2 id="Creating-our-new-project"><a href="#Creating-our-new-project" class="headerlink" title="Creating our new project"></a>Creating our new project</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init svelte@next hello-world</span><br></pre></td></tr></table></figure>
-
-<img src="/2020/12/14/svelte-kit/init.png" class="code-image" title="Init">
-
-<p>Go ahead and type <code>Y</code>!</p>
-<p>Now we have a new directory that looks like the following:</p>
-<img src="/2020/12/14/svelte-kit/dir.png" class="" title="Dir">
-
-<p>For now lets create a simple file based “database” to store our sessions:</p>
-<p><code>touch sessions.json</code></p>
-<div class="code-class">
-  <button class="code-toggle">Raw</button>
-  <img src="/2020/12/14/svelte-kit/session_json.png" class="" title="Session">
-  <p class="code-snippet"></p>
-</div>
-
-<p>Now we want to create another <code>special</code> directory for Svelte-kit, the <code>src/setup</code> directory.</p>
-<p>Inside that directory we will have the following two files:</p>
-<p><code>index.js</code></p>
-<div class="code-class">
-  <button class="code-toggle">Raw</button>
-  <img src="/2020/12/14/svelte-kit/index_js.png" class="" title="index.js">
-  <p class="code-snippet"></p>
-</div>
-
-<p><code>db.js</code></p>
-<div class="code-class">
-  <button class="code-toggle">Raw</button>
-  <img src="/2020/12/14/svelte-kit/db_js.png" class="" title="db.js">
-  <p class="code-snippet"></p>
-</div>
-
-<p>The <code>setup/index.js</code> file runs for each new request made to the web application.<br>Meaning that so long as we have the cookie with the key value <code>my_web_app-123</code> we will be able<br>to authenticate our user without them needing to sign in again.</p>
-<p>To add the cookie to the users browser we can use the <code>Set-cookie</code> header when returning<br>the login request:</p>
-<div class="code-class">
-  <button class="code-toggle">Raw</button>
-  <img src="/2020/12/14/svelte-kit/header.png" class="" title="header">
-  <p class="code-snippet"></p>
-</div>
-
+      
+        <b>Tags:</b>
+        <a class="article-tag-none-link" href="/tags/sveltekit-sveltejs-supabase-vercel/" rel="tag">sveltekit, sveltejs, supabase, vercel</a>
       
     </div>
     
     
-    
   </div>
 </article>
 
-
-
   
-    <article id="post-rt-finance-tracker" class="article article-type-post" itemprop="blogPost" itemscope>
-  <div class="article-inner">
-    
-      <header class="article-header">
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2020/12/14/svelte-kit/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
         
+          svelte-kit
+        
+      </div>
+    </a>
   
-    <h2 class="article-title" itemprop="name">
-      <a href="/2020/12/12/rt-finance-tracker/">rt-finance-tracker</a>
-      
-    </h2>
-  
+</nav>
 
 
-        <div class="article-meta">
-          <time class="article-date" datetime="2020-12-12T18:15:44.000Z" itemprop="datePublished">December 12, 2020, 6:15 PM</time>
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        <h1 id="Using-RT-To-Track-My-Finances"><a href="#Using-RT-To-Track-My-Finances" class="headerlink" title="Using RT To Track My Finances"></a>Using RT To Track My Finances</h1><p>I use RT to automatically track my finances, by using the free Plaid API I am able to pull in transactions from my bank account automatically and create tickets in RT.</p>
-<p>First I start by loading an RT group that has each of my users who are using my RT to track their finances:</p>
-<div class="code-class">
-  <button class="code-toggle">Raw</button>
-  <img src="/2020/12/12/rt-finance-tracker/finances_group.png" class="" title="Finances Group">
-  <p class="code-snippet"></p>
-</div>
-
-<p>Then I map the RT fields to the Plaid API fields that I would like to populate on my finance tickets:</p>
-<div class="code-class">
-  <button class="code-toggle">Raw</button>
-  <img src="/2020/12/12/rt-finance-tracker/finance_fields.png" class="" title="Finance Fields">
-  <p class="code-snippet"></p>
-</div>
-
-<p>I do some date calculations that I won’t include here for sake of keeping this post short, once I have my date range of transactions I am looking for I can start looping over my users:</p>
-<div class="code-class">
-  <button class="code-toggle">Raw</button>
-  <img src="/2020/12/12/rt-finance-tracker/finance_loop_1.png" class="" title="Loop">
-  <p class="code-snippet"></p>
-</div>
-
-<p>In the above code block you can see that I am querying the Plaid transactions API over a date range for my user. Each user record has a custom field “Plaid access token” which is how we only grab that users transactions.</p>
-<p>Now its time to get to the heart of this script and create some tickets from the transactions I found:</p>
-<div class="code-class">
-  <button class="code-toggle">Raw</button>
-  <img src="/2020/12/12/rt-finance-tracker/finance_loop_2.png" class="" title="Loop">
-  <p class="code-snippet"></p>
-</div>
-
-<p>Now that we have some data we can create reports like this!<br>financial planner screenshot</p>
-
-      
-    </div>
-    
-    
-    
-  </div>
-</article>
-
-
-
-  
 
 
 
