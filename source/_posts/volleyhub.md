@@ -92,7 +92,7 @@ Since we are prop drilling we have something like this (Svelte 5 syntax) on our 
 ```svelte
 <script lang="ts>
   ...
-	let { data = $bindable() } = $props();
+  let { data = $bindable() } = $props();
 </script>
 ...
 <Setting tournament={data.tournament} teams={data.teams} ... />
