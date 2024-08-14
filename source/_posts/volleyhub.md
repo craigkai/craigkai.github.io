@@ -89,25 +89,19 @@ For example if I have generated Matches for pool play, and the UI is displaying 
 
 Since we are prop drilling we have something like this (Svelte 5 syntax) on our +page.svelte route:
 
-```svelte
-<script lang="ts>
-  ...
-  let { data = $bindable() } = $props();
-</script>
-...
-<Setting tournament={data.tournament} teams={data.teams} ... />
-<Matches tournament={data.tournament} teams={data.teams} matches={data.matches} ... />
-...
-```
+<div class="code-class">
+  <button class="code-toggle">Raw</button>
+  {% asset_img propDrilling.png propDrilling %}
+  <p class="code-snippet"></p>
+</div>
 
 We need attributes on our `Teams` class to be stateful:
-```ts
-export class Teams extends Base {
-	private databaseService: TeamsSupabaseDatabaseService;
-	eventId?: number;
-	teams = $state<TeamRow[]>([]);
-  ...
-```
+
+<div class="code-class">
+  <button class="code-toggle">Raw</button>
+  {% asset_img teams.svelte.ts.png teams.svelte.ts %}
+  <p class="code-snippet"></p>
+</div>
 
 So we use the `$state` feature in Svelte 5 (instead of `Team.ts` as the file name it is now `Teams.svelte.ts`)!
 
@@ -115,14 +109,11 @@ This means that the UI can now be reactive to when the `teams` attribute on a Te
 
 So now when I render a match instead of reloading all my matches that contain the updated team I can do something like this:
 
-```ts
-{#each matches.matches as match}
-  {@const team1 = data.teams.teams.find((t: TeamRow) => t.id === match.team1)}
-  {@const team2 = data.teams.teams.find((t: TeamRow) => t.id === match.team2)}
-
-  <ViewMatch {match} {team1} {team2}>
-  ...
-```
+<div class="code-class">
+  <button class="code-toggle">Raw</button>
+  {% asset_img viewMatches.png viewMatches %}
+  <p class="code-snippet"></p>
+</div>
 
 Where if we update our Team value it will reactively update the matches component UI!
 

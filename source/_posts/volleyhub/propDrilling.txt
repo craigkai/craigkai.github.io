@@ -1,0 +1,7 @@
+<script lang="ts>
+  ...
+  let { data = $bindable() } = $props();
+</script>
+...
+<Setting tournament={data.tournament} teams={data.teams} ... />
+<Matches tournament={data.tournament} teams={data.teams} matches={data.matches} ... />

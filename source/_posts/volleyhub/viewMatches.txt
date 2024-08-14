@@ -1,0 +1,5 @@
+{#each matches.matches as match}
+  {@const team1 = data.teams.teams.find((t: TeamRow) => t.id === match.team1)}
+  {@const team2 = data.teams.teams.find((t: TeamRow) => t.id === match.team2)}
+
+  <ViewMatch {match} {team1} {team2}>
