@@ -20,7 +20,7 @@ toc: true
   - [The results](#the-results)
     - [A reactive frontend](#a-reactive-frontend)
     - [realtime updates](#realtime-updates)
-  - [Demo](#demo)
+  - [demo](#demo)
   - [conclusion](#conclusion)
 
 ## the problem
@@ -134,7 +134,7 @@ Realtime updates are displayed on the `matches` tab:
 
 I could easily have my Svelte components update in real-time when match results were input. This means when an event organizer puts results in, users who have the event open on their mobile devices will get the update pushed straight to their UI without a page refresh.
 
-## Demo
+## demo
 
 {% asset_img demo.gif demo %}
 
