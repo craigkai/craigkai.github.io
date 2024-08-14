@@ -66,48 +66,48 @@
         <h1 id="SvelteKit-SvelteJS-5-Supabase-Vercel"><a href="#SvelteKit-SvelteJS-5-Supabase-Vercel" class="headerlink" title="SvelteKit (SvelteJS 5) + Supabase + Vercel"></a>SvelteKit (SvelteJS 5) + Supabase + Vercel</h1><h2 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ul>
 <li><a href="#sveltekit-sveltejs-5--supabase--vercel">SvelteKit (SvelteJS 5) + Supabase + Vercel</a><ul>
 <li><a href="#table-of-contents">Table of Contents</a></li>
-<li><a href="#the-problem">The Problem</a></li>
-<li><a href="#the-format">The Format</a></li>
-<li><a href="#the-challenges">The Challenges</a></li>
-<li><a href="#the-tech">The Tech</a><ul>
-<li><a href="#vercel">Vercel</a></li>
-<li><a href="#supabase">Supabase</a></li>
-<li><a href="#svelte-5-and-sveltekit">Svelte 5 and SvelteKit</a></li>
+<li><a href="#the-problem">the problem</a></li>
+<li><a href="#the-format">the format</a></li>
+<li><a href="#the-challenges">the challenges</a></li>
+<li><a href="#the-tech">the tech</a><ul>
+<li><a href="#vercel">vercel</a></li>
+<li><a href="#supabase">supabase</a></li>
+<li><a href="#svelte-5-and-sveltekit">svelte 5 and sveltekit</a></li>
 </ul>
 </li>
-<li><a href="#the-results">The Results</a><ul>
-<li><a href="#realtime-updates">Realtime updates</a></li>
+<li><a href="#the-results">The results</a><ul>
+<li><a href="#realtime-updates">realtime updates</a></li>
 </ul>
 </li>
-<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#conclusion">conclusion</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="The-Problem"><a href="#The-Problem" class="headerlink" title="The Problem"></a>The Problem</h2><p>I regularly attend volleyball tournaments hosted around the Buffalo area. Often at these events, there is a significant amount of effort that goes into creating a balanced “round robin” schedule and keeping teams on this schedule.</p>
+<h2 id="the-problem"><a href="#the-problem" class="headerlink" title="the problem"></a>the problem</h2><p>I regularly attend volleyball tournaments hosted around the Buffalo area. Often at these events, there is a significant amount of effort that goes into creating a balanced “round robin” schedule and keeping teams on this schedule.</p>
 <p>Regularly, the schedules are handmade, and often teams end up playing consecutive games in a row or sitting for far too long, resulting in grumbling and general dissatisfaction.</p>
-<h2 id="The-Format"><a href="#The-Format" class="headerlink" title="The Format"></a>The Format</h2><p>Typically, tournaments follow this format:</p>
+<h2 id="the-format"><a href="#the-format" class="headerlink" title="the format"></a>the format</h2><p>Typically, tournaments follow this format:</p>
 <ol>
 <li>Play X games of <code>pool</code> play — This is for seeding before going into playoffs.</li>
 <li>During pool play, teams are expected to ref other teams’ matches (this means refs need to be pulled from teams not playing).</li>
 <li>Teams should ref the same amount of games where possible.</li>
 <li>Teams should sit in between games logical amounts.</li>
 </ol>
-<h2 id="The-Challenges"><a href="#The-Challenges" class="headerlink" title="The Challenges"></a>The Challenges</h2><p>The problems with creating a schedule by hand are that teams often end up playing multiple games in a row or sitting for too long. Teams are often slow to realize when they should be on the court and even more so when they should be ref’ing.</p>
+<h2 id="the-challenges"><a href="#the-challenges" class="headerlink" title="the challenges"></a>the challenges</h2><p>The problems with creating a schedule by hand are that teams often end up playing multiple games in a row or sitting for too long. Teams are often slow to realize when they should be on the court and even more so when they should be ref’ing.</p>
 <p>I knew I wanted to build something for fun and learning using <a target="_blank" rel="noopener" href="https://kit.svelte.dev/">SvelteKit</a> and <a target="_blank" rel="noopener" href="https://supabase.com/">Supabase</a>, so this is the problem that I chose to tackle (I know scheduling tournaments is a solved problem)!</p>
-<h2 id="The-Tech"><a href="#The-Tech" class="headerlink" title="The Tech"></a>The Tech</h2><h3 id="Vercel"><a href="#Vercel" class="headerlink" title="Vercel"></a>Vercel</h3><blockquote>
+<h2 id="the-tech"><a href="#the-tech" class="headerlink" title="the tech"></a>the tech</h2><h3 id="vercel"><a href="#vercel" class="headerlink" title="vercel"></a>vercel</h3><blockquote>
 <p>“Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web.”</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://vercel.com/">Vercel</a> is an amazing product and a logical choice for deploying my SvelteKit infrastructure. By utilizing the <a target="_blank" rel="noopener" href="https://kit.svelte.dev/docs/adapter-vercel">Vercel adapter</a> for SvelteKit, getting my application up and running in the cloud only took minutes. By using Vercel, I had easy access to logs, and I find it much simpler than using the AWS console! Deployments for branches and PRs are automatically generated and reviewable, and so much more!</p>
 <p><img src="/images/volleyhub/vercel.png" alt="Vercel Dashboard"></p>
-<h3 id="Supabase"><a href="#Supabase" class="headerlink" title="Supabase"></a>Supabase</h3><p>Another product that has truly impressed me!</p>
+<h3 id="supabase"><a href="#supabase" class="headerlink" title="supabase"></a>supabase</h3><p>Another product that has truly impressed me!</p>
 <blockquote>
 <p>“Supabase is an open-source Firebase alternative. Start your project with a Postgres database, Authentication, instant APIs, Edge Functions, Realtime subscriptions, Storage, and Vector embeddings.”</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://supabase.com/">Supabase</a> has made things such as Auth and real-time functionality a piece of cake! Supabase handles user Auth and email (amongst other Auth&#x2F;Notification methods) but also makes developing a dream. Typically creating and managing a local test DB can be a pain, and I truly dislike when engineering teams all use one dev cloud test DB (you never know how messed up the DB state is).</p>
 <p>Supabase makes it easy to spin up a local Supabase web studio along with a database instance to allow for easy and effective DB testing and version control!</p>
 <p><img src="/images/volleyhub/supabase.png" alt="Supabase"></p>
-<h3 id="Svelte-5-and-SvelteKit"><a href="#Svelte-5-and-SvelteKit" class="headerlink" title="Svelte 5 and SvelteKit"></a>Svelte 5 and SvelteKit</h3><p><a target="_blank" rel="noopener" href="https://svelte.dev/">Svelte</a> is amazing, and working with Svelte 5 has felt really good!</p>
-<h2 id="The-Results"><a href="#The-Results" class="headerlink" title="The Results"></a>The Results</h2><h3 id="Realtime-updates"><a href="#Realtime-updates" class="headerlink" title="Realtime updates"></a>Realtime updates</h3><p>One of the features I was excited to try out from Supabase was the easy real-time updates that the JS SDK could subscribe to. With a little bit of code:</p>
+<h3 id="svelte-5-and-sveltekit"><a href="#svelte-5-and-sveltekit" class="headerlink" title="svelte 5 and sveltekit"></a>svelte 5 and sveltekit</h3><p><a target="_blank" rel="noopener" href="https://svelte.dev/">Svelte</a> is amazing, and working with Svelte 5 has felt really good!</p>
+<h2 id="The-results"><a href="#The-results" class="headerlink" title="The results"></a>The results</h2><h3 id="realtime-updates"><a href="#realtime-updates" class="headerlink" title="realtime updates"></a>realtime updates</h3><p>One of the features I was excited to try out from Supabase was the easy real-time updates that the JS SDK could subscribe to. With a little bit of code:</p>
 <div class="code-class">
   <button class="code-toggle">Raw</button>
   <img src="/2024/08/13/volleyhub/subscribeToChanges.png" class="" title="subscribeToChanges">
@@ -117,7 +117,7 @@
 <p>Realtime updates are displayed on the <code>matches</code> tab:</p>
 <p><img src="/images/volleyhub/matches.png" alt="Macthes"></p>
 <p>I could easily have my Svelte components update in real-time when match results were input. This means when an event organizer puts results in, users who have the event open on their mobile devices will get the update pushed straight to their UI without a page refresh.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Building a scheduling tool for volleyball tournaments using SvelteKit and Supabase has been a fun and educational experience. It addresses the common issues faced during tournaments and helps in creating a balanced schedule efficiently.</p>
+<h2 id="conclusion"><a href="#conclusion" class="headerlink" title="conclusion"></a>conclusion</h2><p>Building a scheduling tool for volleyball tournaments using SvelteKit and Supabase has been a fun and educational experience. It addresses the common issues faced during tournaments and helps in creating a balanced schedule efficiently.</p>
 
       
     </div>
