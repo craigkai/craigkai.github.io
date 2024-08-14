@@ -2,6 +2,7 @@
 title: volleyhub
 date: 2024-08-13 14:00:45
 tags: sveltekit, sveltejs, supabase, vercel
+toc: true
 ---
 
 # SvelteKit (SvelteJS 5) + Supabase + Vercel
@@ -9,24 +10,24 @@ tags: sveltekit, sveltejs, supabase, vercel
 ## Table of Contents
 - [SvelteKit (SvelteJS 5) + Supabase + Vercel](#sveltekit-sveltejs-5--supabase--vercel)
   - [Table of Contents](#table-of-contents)
-  - [The Problem](#the-problem)
-  - [The Format](#the-format)
-  - [The Challenges](#the-challenges)
-  - [The Tech](#the-tech)
-    - [Vercel](#vercel)
-    - [Supabase](#supabase)
-    - [Svelte 5 and SvelteKit](#svelte-5-and-sveltekit)
-  - [The Results](#the-results)
-    - [Realtime updates](#realtime-updates)
-  - [Conclusion](#conclusion)
+  - [the problem](#the-problem)
+  - [the format](#the-format)
+  - [the challenges](#the-challenges)
+  - [the tech](#the-tech)
+    - [vercel](#vercel)
+    - [supabase](#supabase)
+    - [svelte 5 and sveltekit](#svelte-5-and-sveltekit)
+  - [The results](#the-results)
+    - [realtime updates](#realtime-updates)
+  - [conclusion](#conclusion)
 
-## The Problem
+## the problem
 
 I regularly attend volleyball tournaments hosted around the Buffalo area. Often at these events, there is a significant amount of effort that goes into creating a balanced "round robin" schedule and keeping teams on this schedule.
 
 Regularly, the schedules are handmade, and often teams end up playing consecutive games in a row or sitting for far too long, resulting in grumbling and general dissatisfaction.
 
-## The Format
+## the format
 
 Typically, tournaments follow this format:
 
@@ -35,15 +36,15 @@ Typically, tournaments follow this format:
 3. Teams should ref the same amount of games where possible.
 4. Teams should sit in between games logical amounts.
 
-## The Challenges
+## the challenges
 
 The problems with creating a schedule by hand are that teams often end up playing multiple games in a row or sitting for too long. Teams are often slow to realize when they should be on the court and even more so when they should be ref'ing.
 
 I knew I wanted to build something for fun and learning using [SvelteKit](https://kit.svelte.dev/) and [Supabase](https://supabase.com/), so this is the problem that I chose to tackle (I know scheduling tournaments is a solved problem)!
 
-## The Tech
+## the tech
 
-### Vercel
+### vercel
 
 > "Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web."
 
@@ -52,7 +53,7 @@ I knew I wanted to build something for fun and learning using [SvelteKit](https:
 
 ![Vercel Dashboard](/images/volleyhub/vercel.png)
 
-### Supabase
+### supabase
 
 Another product that has truly impressed me!
 
@@ -64,13 +65,13 @@ Supabase makes it easy to spin up a local Supabase web studio along with a datab
 
 ![Supabase](/images/volleyhub/supabase.png)
 
-### Svelte 5 and SvelteKit
+### svelte 5 and sveltekit
 
 [Svelte](https://svelte.dev/) is amazing, and working with Svelte 5 has felt really good!
 
-## The Results
+## The results
 
-### Realtime updates
+### realtime updates
 
 One of the features I was excited to try out from Supabase was the easy real-time updates that the JS SDK could subscribe to. With a little bit of code:
 
@@ -87,6 +88,6 @@ Realtime updates are displayed on the `matches` tab:
 
 I could easily have my Svelte components update in real-time when match results were input. This means when an event organizer puts results in, users who have the event open on their mobile devices will get the update pushed straight to their UI without a page refresh.
 
-## Conclusion
+## conclusion
 
 Building a scheduling tool for volleyball tournaments using SvelteKit and Supabase has been a fun and educational experience. It addresses the common issues faced during tournaments and helps in creating a balanced schedule efficiently.
