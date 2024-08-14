@@ -44,7 +44,7 @@ Typically, tournaments follow this format:
 
 The issues that arise with creating a schedule by hand are that teams often end up playing multiple games in a row or sitting for too long.
 
-Further adding diffcaulties, is most often there are only a few copies of the schedule. Whether due to last minute changes or physcial copies not having been made. This means that a central schedule is taped up where participants can view it. Resulting in teams often being slow to realize when they should be playing on the court or even more so when they should be ref'ing.
+Further adding difficulties, is most often there are only a few copies of the schedule. Whether due to last minute changes or physcial copies not having been made. This means that a central schedule is taped up where participants can view it. Resulting in teams often being slow to realize when they should be playing on the court or even more so when they should be ref'ing.
 
 I knew I wanted to build something for fun and learnings purposes using all of my favorite tech ([SvelteKit](https://kit.svelte.dev/) and [Supabase](https://supabase.com/)). So this is the problem that I chose to tackle (I know scheduling tournaments is a solved problem already).
 
