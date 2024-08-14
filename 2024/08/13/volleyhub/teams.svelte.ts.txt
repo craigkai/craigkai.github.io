@@ -1,0 +1,4 @@
+export class Teams extends Base {
+	private databaseService: TeamsSupabaseDatabaseService;
+	eventId?: number;
+	teams = $state<TeamRow[]>([]);

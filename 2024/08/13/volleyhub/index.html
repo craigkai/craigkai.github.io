@@ -51,7 +51,7 @@
 
 
         <div class="article-meta">
-          <time class="article-date" datetime="2024-08-13T14:00:45.000Z" itemprop="datePublished">August 13, 2024, 2:00 PM</time>
+          <time class="article-date" datetime="2024-08-13T18:00:45.000Z" itemprop="datePublished">August 13, 2024, 6:00 PM</time>
 
           
         </div>
@@ -113,15 +113,27 @@
 <p>And on initial page load I loaded my TypeScript objects for some event Id. I am prop drilling where on page load I load my Event (settings), Teams and Matches class instances but if one component updates one of these class instances, that may require other components to be aware.</p>
 <p>For example if I have generated Matches for pool play, and the UI is displaying the matches on an already mounted component. What happens if I change a team name on the Teams tab? I will want the Matches tab showing all the matches to also reactively update the dislayed team name to show the new team.</p>
 <p>Since we are prop drilling we have something like this (Svelte 5 syntax) on our +page.svelte route:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang=&quot;ts&gt;</span><br><span class="line">  ...</span><br><span class="line">  let &#123; data = $bindable() &#125; = $props();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">...</span><br><span class="line">&lt;Setting tournament=&#123;data.tournament&#125; teams=&#123;data.teams&#125; ... /&gt;</span><br><span class="line">&lt;Matches tournament=&#123;data.tournament&#125; teams=&#123;data.teams&#125; matches=&#123;data.matches&#125; ... /&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<div class="code-class">
+  <button class="code-toggle">Raw</button>
+  <img src="/2024/08/13/volleyhub/propDrilling.png" class="" title="propDrilling">
+  <p class="code-snippet"></p>
+</div>
 
 <p>We need attributes on our <code>Teams</code> class to be stateful:</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">Teams</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Base</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="attr">databaseService</span>: <span class="title class_">TeamsSupabaseDatabaseService</span>;</span><br><span class="line">	eventId?: <span class="built_in">number</span>;</span><br><span class="line">	teams = $state&lt;<span class="title class_">TeamRow</span>[]&gt;([]);</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<div class="code-class">
+  <button class="code-toggle">Raw</button>
+  <img src="/2024/08/13/volleyhub/teams.svelte.ts.png" class="" title="teams.svelte.ts">
+  <p class="code-snippet"></p>
+</div>
 
 <p>So we use the <code>$state</code> feature in Svelte 5 (instead of <code>Team.ts</code> as the file name it is now <code>Teams.svelte.ts</code>)!</p>
 <p>This means that the UI can now be reactive to when the <code>teams</code> attribute on a Teams class instance changes! (It does mean we are using a proxy value which can cause issues in other places if you want the values. Can use &#96;$state.snapshot)</p>
 <p>So now when I render a match instead of reloading all my matches that contain the updated team I can do something like this:</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;#each matches.<span class="property">matches</span> <span class="keyword">as</span> match&#125;</span><br><span class="line">  &#123;<span class="meta">@const</span> team1 = data.<span class="property">teams</span>.<span class="property">teams</span>.<span class="title function_">find</span>(<span class="function">(<span class="params"><span class="attr">t</span>: <span class="title class_">TeamRow</span></span>) =&gt;</span> t.<span class="property">id</span> === match.<span class="property">team1</span>)&#125;</span><br><span class="line">  &#123;<span class="meta">@const</span> team2 = data.<span class="property">teams</span>.<span class="property">teams</span>.<span class="title function_">find</span>(<span class="function">(<span class="params"><span class="attr">t</span>: <span class="title class_">TeamRow</span></span>) =&gt;</span> t.<span class="property">id</span> === match.<span class="property">team2</span>)&#125;</span><br><span class="line"></span><br><span class="line">  &lt;<span class="title class_">ViewMatch</span> &#123;match&#125; &#123;team1&#125; &#123;team2&#125;&gt;</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<div class="code-class">
+  <button class="code-toggle">Raw</button>
+  <img src="/2024/08/13/volleyhub/viewMatches.png" class="" title="viewMatches">
+  <p class="code-snippet"></p>
+</div>
 
 <p>Where if we update our Team value it will reactively update the matches component UI!</p>
 <h3 id="realtime-updates"><a href="#realtime-updates" class="headerlink" title="realtime updates"></a>realtime updates</h3><p>One of the features I was excited to try out from Supabase was the easy real-time updates that the JS SDK could subscribe to. With a little bit of code:</p>
