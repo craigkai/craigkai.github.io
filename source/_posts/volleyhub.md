@@ -20,6 +20,7 @@ toc: true
   - [The results](#the-results)
     - [A reactive frontend](#a-reactive-frontend)
     - [realtime updates](#realtime-updates)
+  - [Demo](#demo)
   - [conclusion](#conclusion)
 
 ## the problem
@@ -129,10 +130,13 @@ One of the features I was excited to try out from Supabase was the easy real-tim
 
 Realtime updates are displayed on the `matches` tab:
 
-![Macthes](/images/volleyhub/matches.png)
-
+![Matches](/images/volleyhub/matches.png)
 
 I could easily have my Svelte components update in real-time when match results were input. This means when an event organizer puts results in, users who have the event open on their mobile devices will get the update pushed straight to their UI without a page refresh.
+
+## Demo
+
+{% asset_img demo.gif demo %}
 
 ## conclusion
 
