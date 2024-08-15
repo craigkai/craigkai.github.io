@@ -25,11 +25,11 @@ toc: true
 
 ## the problem
 
-I regularly attend volleyball tournaments hosted around the Buffalo area. These events are always a great deal of fun and we of the Buffalo area are so fortunate to have venues and individuals willing to put them one.
+I regularly attend volleyball tournaments hosted around the Buffalo area. These events are always a great deal of fun, and we are fortunate to have venues and individuals willing to organize them.
 
-That being said, often at these events, there is a significant amount of effort that goes into creating a balanced "round robin" schedule and keeping teams on this schedule. Some of the difficulty around creating this schedule will be discussed below.
+That being said, creating a balanced "round robin" schedule and keeping teams on schedule often requires significant effort. The difficulties associated with creating these schedules will be discussed below.
 
-But the short of it is regulary, the schedules are handmade, and often teams end up playing consecutive games in a row or sitting for far too long, resulting in grumbling and general dissatisfaction.
+In short, the schedules are usually handmade, and teams frequently end up playing consecutive games in a row or sitting idle for too long, resulting in grumbling and general dissatisfaction.
 
 ## the format
 
@@ -42,11 +42,11 @@ Typically, tournaments follow this format:
 
 ## the challenges
 
-The issues that arise with creating a schedule by hand are that teams often end up playing multiple games in a row or sitting for too long.
+The main issues with creating a schedule by hand are that teams often end up playing multiple games in a row or sitting for too long.
 
-Further adding difficulties, is most often there are only a few copies of the schedule. Whether due to last minute changes or physcial copies not having been made. This means that a central schedule is taped up where participants can view it. Resulting in teams often being slow to realize when they should be playing on the court or even more so when they should be ref'ing.
+Compounding these difficulties, there are often only a few copies of the schedule available, whether due to last-minute changes or a lack of physical copies. This means that a central schedule is typically taped up for participants to view, leading to teams often being slow to realize when they should be on the court or, even more so, when they should be refereeing.
 
-I knew I wanted to build something for fun and learnings purposes using all of my favorite tech ([SvelteKit](https://kit.svelte.dev/) and [Supabase](https://supabase.com/)). So this is the problem that I chose to tackle (I know scheduling tournaments is a solved problem already).
+I knew I wanted to build something fun and educational using my favorite tech stack (SvelteKit and Supabase). This is the problem I chose to tackle, even though I realize that scheduling tournaments is a problem that has already been solved in many ways.
 
 ## the tech
 
@@ -78,17 +78,15 @@ Supabase makes it easy to spin up a local Supabase web studio along with a datab
 
 ### A reactive frontend
 
-When logged in as an admin user there are a few CRUD options that they can act on. Settings, Teams, Matches and soon Brackets.
+When logged in as an admin user, several CRUD options are available, such as managing Settings, Teams, and Matches, with Brackets coming soon.
 
-I wanted to make my UI as flashy and `modern` as possible. Superforms `use:enhance` made so that subbmitting forms didn't reload my page so updating Event values is really fast and feels great. But there was an issue with this. What happens when I load my UI and mount my components:
+I aimed to make the UI as modern and responsive as possible. By using Superforms’ `use:enhance`, form submissions no longer trigger a page reload, making updates to Event values feel seamless and fast. However, this introduced a challenge: What happens when the UI loads and mounts components?
 
-| Settings Tab | Teams Tab | Matches Tab |
+For instance, on initial page load, I load TypeScript objects for a specific event ID and use prop drilling to pass the Event (settings), Teams, and Matches class instances to various components. But if one component updates one of these class instances, other components that depend on the same data must also be aware of these changes.
 
-And on initial page load I loaded my TypeScript objects for some event Id. I am prop drilling where on page load I load my Event (settings), Teams and Matches class instances but if one component updates one of these class instances, that may require other components to be aware.
+For example, if I’ve generated Matches for pool play and the UI displays them on an already mounted component, what happens if I change a team name on the Teams tab? Naturally, I’d want the Matches tab to reactively update and display the new team name across all relevant matches.
 
-For example if I have generated Matches for pool play, and the UI is displaying the matches on an already mounted component. What happens if I change a team name on the Teams tab? I will want the Matches tab showing all the matches to also reactively update the dislayed team name to show the new team.
-
-Since we are prop drilling we have something like this (Svelte 5 syntax) on our +page.svelte route:
+To handle this, I used the following Svelte 5 syntax in our +page.svelte route:
 
 <div class="code-class">
   <button class="code-toggle">Raw</button>
@@ -104,7 +102,7 @@ We need attributes on our `Teams` class to be stateful:
   <p class="code-snippet"></p>
 </div>
 
-So we use the `$state` feature in Svelte 5 (instead of `Team.ts` as the file name it is now `Teams.svelte.ts`)!
+So we use the `$state` feature in Svelte 5 (instead of `team.ts` as the file name it is now `teams.svelte.ts`)!
 
 This means that the UI can now be reactive to when the `teams` attribute on a Teams class instance changes! (It does mean we are using a proxy value which can cause issues in other places if you want the values. Can use `$state.snapshot)
 
