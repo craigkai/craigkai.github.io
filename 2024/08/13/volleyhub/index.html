@@ -82,9 +82,9 @@
 </ul>
 </li>
 </ul>
-<h2 id="the-problem"><a href="#the-problem" class="headerlink" title="the problem"></a>the problem</h2><p>I regularly attend volleyball tournaments hosted around the Buffalo area. These events are always a great deal of fun and we of the Buffalo area are so fortunate to have venues and individuals willing to put them one.</p>
-<p>That being said, often at these events, there is a significant amount of effort that goes into creating a balanced “round robin” schedule and keeping teams on this schedule. Some of the difficulty around creating this schedule will be discussed below.</p>
-<p>But the short of it is regulary, the schedules are handmade, and often teams end up playing consecutive games in a row or sitting for far too long, resulting in grumbling and general dissatisfaction.</p>
+<h2 id="the-problem"><a href="#the-problem" class="headerlink" title="the problem"></a>the problem</h2><p>I regularly attend volleyball tournaments hosted around the Buffalo area. These events are always a great deal of fun, and we are fortunate to have venues and individuals willing to organize them.</p>
+<p>That being said, creating a balanced “round robin” schedule and keeping teams on schedule often requires significant effort. The difficulties associated with creating these schedules will be discussed below.</p>
+<p>In short, the schedules are usually handmade, and teams frequently end up playing consecutive games in a row or sitting idle for too long, resulting in grumbling and general dissatisfaction.</p>
 <h2 id="the-format"><a href="#the-format" class="headerlink" title="the format"></a>the format</h2><p>Typically, tournaments follow this format:</p>
 <ol>
 <li>Play X games of <code>pool</code> play — This is for seeding before going into playoffs.</li>
@@ -92,9 +92,9 @@
 <li>Teams should ref the same amount of games where possible.</li>
 <li>Teams should sit in between games logical amounts.</li>
 </ol>
-<h2 id="the-challenges"><a href="#the-challenges" class="headerlink" title="the challenges"></a>the challenges</h2><p>The issues that arise with creating a schedule by hand are that teams often end up playing multiple games in a row or sitting for too long.</p>
-<p>Further adding difficulties, is most often there are only a few copies of the schedule. Whether due to last minute changes or physcial copies not having been made. This means that a central schedule is taped up where participants can view it. Resulting in teams often being slow to realize when they should be playing on the court or even more so when they should be ref’ing.</p>
-<p>I knew I wanted to build something for fun and learnings purposes using all of my favorite tech (<a target="_blank" rel="noopener" href="https://kit.svelte.dev/">SvelteKit</a> and <a target="_blank" rel="noopener" href="https://supabase.com/">Supabase</a>). So this is the problem that I chose to tackle (I know scheduling tournaments is a solved problem already).</p>
+<h2 id="the-challenges"><a href="#the-challenges" class="headerlink" title="the challenges"></a>the challenges</h2><p>The main issues with creating a schedule by hand are that teams often end up playing multiple games in a row or sitting for too long.</p>
+<p>Compounding these difficulties, there are often only a few copies of the schedule available, whether due to last-minute changes or a lack of physical copies. This means that a central schedule is typically taped up for participants to view, leading to teams often being slow to realize when they should be on the court or, even more so, when they should be refereeing.</p>
+<p>I knew I wanted to build something fun and educational using my favorite tech stack (SvelteKit and Supabase). This is the problem I chose to tackle, even though I realize that scheduling tournaments is a problem that has already been solved in many ways.</p>
 <h2 id="the-tech"><a href="#the-tech" class="headerlink" title="the tech"></a>the tech</h2><h3 id="vercel"><a href="#vercel" class="headerlink" title="vercel"></a>vercel</h3><blockquote>
 <p>“Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web.”</p>
 </blockquote>
@@ -108,12 +108,11 @@
 <p>Supabase makes it easy to spin up a local Supabase web studio along with a database instance to allow for easy and effective DB testing and version control!</p>
 <p><img src="/images/volleyhub/supabase.png" alt="Supabase"></p>
 <h3 id="svelte-5-and-sveltekit"><a href="#svelte-5-and-sveltekit" class="headerlink" title="svelte 5 and sveltekit"></a>svelte 5 and sveltekit</h3><p><a target="_blank" rel="noopener" href="https://svelte.dev/">Svelte</a> is amazing, and working with Svelte 5 has felt really good! Swicthing to runes was actually very straightforward and along the way I feel I’ve learned some better practices as far as reactivity in the frontend goes.</p>
-<h2 id="The-results"><a href="#The-results" class="headerlink" title="The results"></a>The results</h2><h3 id="A-reactive-frontend"><a href="#A-reactive-frontend" class="headerlink" title="A reactive frontend"></a>A reactive frontend</h3><p>When logged in as an admin user there are a few CRUD options that they can act on. Settings, Teams, Matches and soon Brackets.</p>
-<p>I wanted to make my UI as flashy and <code>modern</code> as possible. Superforms <code>use:enhance</code> made so that subbmitting forms didn’t reload my page so updating Event values is really fast and feels great. But there was an issue with this. What happens when I load my UI and mount my components:</p>
-<p>| Settings Tab | Teams Tab | Matches Tab |</p>
-<p>And on initial page load I loaded my TypeScript objects for some event Id. I am prop drilling where on page load I load my Event (settings), Teams and Matches class instances but if one component updates one of these class instances, that may require other components to be aware.</p>
-<p>For example if I have generated Matches for pool play, and the UI is displaying the matches on an already mounted component. What happens if I change a team name on the Teams tab? I will want the Matches tab showing all the matches to also reactively update the dislayed team name to show the new team.</p>
-<p>Since we are prop drilling we have something like this (Svelte 5 syntax) on our +page.svelte route:</p>
+<h2 id="The-results"><a href="#The-results" class="headerlink" title="The results"></a>The results</h2><h3 id="A-reactive-frontend"><a href="#A-reactive-frontend" class="headerlink" title="A reactive frontend"></a>A reactive frontend</h3><p>When logged in as an admin user, several CRUD options are available, such as managing Settings, Teams, and Matches, with Brackets coming soon.</p>
+<p>I aimed to make the UI as modern and responsive as possible. By using Superforms’ <code>use:enhance</code>, form submissions no longer trigger a page reload, making updates to Event values feel seamless and fast. However, this introduced a challenge: What happens when the UI loads and mounts components?</p>
+<p>For instance, on initial page load, I load TypeScript objects for a specific event ID and use prop drilling to pass the Event (settings), Teams, and Matches class instances to various components. But if one component updates one of these class instances, other components that depend on the same data must also be aware of these changes.</p>
+<p>For example, if I’ve generated Matches for pool play and the UI displays them on an already mounted component, what happens if I change a team name on the Teams tab? Naturally, I’d want the Matches tab to reactively update and display the new team name across all relevant matches.</p>
+<p>To handle this, I used the following Svelte 5 syntax in our +page.svelte route:</p>
 <div class="code-class">
   <button class="code-toggle">Raw</button>
   <img src="/2024/08/13/volleyhub/propDrilling.png" class="" title="propDrilling">
@@ -127,7 +126,7 @@
   <p class="code-snippet"></p>
 </div>
 
-<p>So we use the <code>$state</code> feature in Svelte 5 (instead of <code>Team.ts</code> as the file name it is now <code>Teams.svelte.ts</code>)!</p>
+<p>So we use the <code>$state</code> feature in Svelte 5 (instead of <code>team.ts</code> as the file name it is now <code>teams.svelte.ts</code>)!</p>
 <p>This means that the UI can now be reactive to when the <code>teams</code> attribute on a Teams class instance changes! (It does mean we are using a proxy value which can cause issues in other places if you want the values. Can use &#96;$state.snapshot)</p>
 <p>So now when I render a match instead of reloading all my matches that contain the updated team I can do something like this:</p>
 <div class="code-class">
