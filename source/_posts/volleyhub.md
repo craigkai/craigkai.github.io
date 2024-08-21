@@ -104,7 +104,7 @@ We need attributes on our `Teams` class to be stateful:
 
 So we use the `$state` feature in Svelte 5 (instead of `team.ts` as the file name it is now `teams.svelte.ts`)!
 
-This means that the UI can now be reactive to when the `teams` attribute on a Teams class instance changes! (It does mean we are using a proxy value which can cause issues in other places if you want the values. Can use `$state.snapshot)
+This means that the UI can now be reactive to when the `teams` attribute on a Teams class instance changes! (It does mean we are using a proxy value which can cause issues in other places if you want the values. Can use `$state.snapshot`)
 
 So now when I render a match instead of reloading all my matches that contain the updated team I can do something like this:
 
