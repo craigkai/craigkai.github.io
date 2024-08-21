@@ -127,7 +127,7 @@
 </div>
 
 <p>So we use the <code>$state</code> feature in Svelte 5 (instead of <code>team.ts</code> as the file name it is now <code>teams.svelte.ts</code>)!</p>
-<p>This means that the UI can now be reactive to when the <code>teams</code> attribute on a Teams class instance changes! (It does mean we are using a proxy value which can cause issues in other places if you want the values. Can use &#96;$state.snapshot)</p>
+<p>This means that the UI can now be reactive to when the <code>teams</code> attribute on a Teams class instance changes! (It does mean we are using a proxy value which can cause issues in other places if you want the values. Can use <code>$state.snapshot</code>)</p>
 <p>So now when I render a match instead of reloading all my matches that contain the updated team I can do something like this:</p>
 <div class="code-class">
   <button class="code-toggle">Raw</button>
