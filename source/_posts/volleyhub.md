@@ -22,6 +22,7 @@ toc: true
     - [realtime updates](#realtime-updates)
     - [demo](#demo)
   - [conclusion](#conclusion)
+  - [P.S](#ps)
 
 ## the problem
 
@@ -43,6 +44,8 @@ Typically, tournaments follow this format:
 ## the challenges
 
 The main issues with creating a schedule by hand are that teams often end up playing multiple games in a row or sitting for too long.
+
+Just recently I was at a tournament that had three sand courts available for use, the schedule has been planned out ahead of time to optimally use these courts for ten teams. Then day of the event, 15 minutes before start time, an 11th team showed up. While we were able to get a pre-fabricated 11 team round robin schedule from online, we couldn't balance the schedule in a way that would allow us to utilize all three courts. There was general chaos around managing the schedule that day.
 
 Compounding these difficulties, there are often only a few copies of the schedule available, whether due to last-minute changes or a lack of physical copies. This means that a central schedule is typically taped up for participants to view, leading to teams often being slow to realize when they should be on the court or, even more so, when they should be refereeing.
 
@@ -72,7 +75,7 @@ Supabase makes it easy to spin up a local Supabase web studio along with a datab
 
 ### svelte 5 and sveltekit
 
-[Svelte](https://svelte.dev/) is amazing, and working with Svelte 5 has felt really good! Swicthing to runes was actually very straightforward and along the way I feel I've learned some better practices as far as reactivity in the frontend goes.
+[Svelte](https://svelte.dev/) is amazing, and working with Svelte 5 has felt really good! Switching to runes was actually very straightforward and along the way I feel I've learned some better practices as far as reactivity in the frontend goes.
 
 ## The results
 
@@ -138,4 +141,11 @@ I could easily have my Svelte components update in real-time when match results 
 
 ## conclusion
 
-Building a scheduling tool for volleyball tournaments using SvelteKit and Supabase has been a fun and educational experience. It addresses the common issues faced during tournaments and helps in creating a balanced schedule efficiently.
+Building a scheduling tool for volleyball tournaments using SvelteKit and Supabase has been a fun and educational experience. At the time of writing this I will be piloting the app for a tournament this coming weekend, so hopefully disaster does not ensue!
+
+
+## P.S
+
+I am currently looking for my next career opportunity, so if anyone knows of anyone hiring for Svelte or similar positions, please let me know!
+
+Thanks for reading!
