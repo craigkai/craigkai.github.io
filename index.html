@@ -82,6 +82,7 @@
 </ul>
 </li>
 <li><a href="#conclusion">conclusion</a></li>
+<li><a href="#ps">P.S</a></li>
 </ul>
 </li>
 </ul>
@@ -96,6 +97,7 @@
 <li>Teams should sit in between games logical amounts.</li>
 </ol>
 <h2 id="the-challenges"><a href="#the-challenges" class="headerlink" title="the challenges"></a>the challenges</h2><p>The main issues with creating a schedule by hand are that teams often end up playing multiple games in a row or sitting for too long.</p>
+<p>Just recently I was at a tournament that had three sand courts available for use, the schedule has been planned out ahead of time to optimally use these courts for ten teams. Then day of the event, 15 minutes before start time, an 11th team showed up. While we were able to get a pre-fabricated 11 team round robin schedule from online, we couldn’t balance the schedule in a way that would allow us to utilize all three courts. There was general chaos around managing the schedule that day.</p>
 <p>Compounding these difficulties, there are often only a few copies of the schedule available, whether due to last-minute changes or a lack of physical copies. This means that a central schedule is typically taped up for participants to view, leading to teams often being slow to realize when they should be on the court or, even more so, when they should be refereeing.</p>
 <p>I knew I wanted to build something fun and educational using my favorite tech stack (SvelteKit and Supabase). This is the problem I chose to tackle, even though I realize that scheduling tournaments is a problem that has already been solved in many ways.</p>
 <h2 id="the-tech"><a href="#the-tech" class="headerlink" title="the tech"></a>the tech</h2><h3 id="vercel"><a href="#vercel" class="headerlink" title="vercel"></a>vercel</h3><blockquote>
@@ -110,7 +112,7 @@
 <p><a target="_blank" rel="noopener" href="https://supabase.com/">Supabase</a> has made things such as Auth and real-time functionality a piece of cake! Supabase handles user Auth and email (amongst other Auth&#x2F;Notification methods) but also makes developing a dream. Typically creating and managing a local test DB can be a pain, and I truly dislike when engineering teams all use one dev cloud test DB (you never know how messed up the DB state is).</p>
 <p>Supabase makes it easy to spin up a local Supabase web studio along with a database instance to allow for easy and effective DB testing and version control!</p>
 <p><img src="/images/volleyhub/supabase.png" alt="Supabase"></p>
-<h3 id="svelte-5-and-sveltekit"><a href="#svelte-5-and-sveltekit" class="headerlink" title="svelte 5 and sveltekit"></a>svelte 5 and sveltekit</h3><p><a target="_blank" rel="noopener" href="https://svelte.dev/">Svelte</a> is amazing, and working with Svelte 5 has felt really good! Swicthing to runes was actually very straightforward and along the way I feel I’ve learned some better practices as far as reactivity in the frontend goes.</p>
+<h3 id="svelte-5-and-sveltekit"><a href="#svelte-5-and-sveltekit" class="headerlink" title="svelte 5 and sveltekit"></a>svelte 5 and sveltekit</h3><p><a target="_blank" rel="noopener" href="https://svelte.dev/">Svelte</a> is amazing, and working with Svelte 5 has felt really good! Switching to runes was actually very straightforward and along the way I feel I’ve learned some better practices as far as reactivity in the frontend goes.</p>
 <h2 id="The-results"><a href="#The-results" class="headerlink" title="The results"></a>The results</h2><h3 id="A-reactive-frontend"><a href="#A-reactive-frontend" class="headerlink" title="A reactive frontend"></a>A reactive frontend</h3><p>When logged in as an admin user, several CRUD options are available, such as managing Settings, Teams, and Matches, with Brackets coming soon.</p>
 <p>I aimed to make the UI as modern and responsive as possible. By using Superforms’ <code>use:enhance</code>, form submissions no longer trigger a page reload, making updates to Event values feel seamless and fast. However, this introduced a challenge: What happens when the UI loads and mounts components?</p>
 <p>For instance, on initial page load, I load TypeScript objects for a specific event ID and use prop drilling to pass the Event (settings), Teams, and Matches class instances to various components. But if one component updates one of these class instances, other components that depend on the same data must also be aware of these changes.</p>
@@ -151,7 +153,9 @@
 <p>I could easily have my Svelte components update in real-time when match results were input. This means when an event organizer puts results in, users who have the event open on their mobile devices will get the update pushed straight to their UI without a page refresh.</p>
 <h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><img src="/2024/08/13/volleyhub/demo.gif" class="" title="demo">
 
-<h2 id="conclusion"><a href="#conclusion" class="headerlink" title="conclusion"></a>conclusion</h2><p>Building a scheduling tool for volleyball tournaments using SvelteKit and Supabase has been a fun and educational experience. It addresses the common issues faced during tournaments and helps in creating a balanced schedule efficiently.</p>
+<h2 id="conclusion"><a href="#conclusion" class="headerlink" title="conclusion"></a>conclusion</h2><p>Building a scheduling tool for volleyball tournaments using SvelteKit and Supabase has been a fun and educational experience. At the time of writing this I will be piloting the app for a tournament this coming weekend, so hopefully disaster does not ensue!</p>
+<h2 id="P-S"><a href="#P-S" class="headerlink" title="P.S"></a>P.S</h2><p>I am currently looking for my next career opportunity, so if anyone knows of anyone hiring for Svelte or similar positions, please let me know!</p>
+<p>Thanks for reading!</p>
 
       
     </div>
